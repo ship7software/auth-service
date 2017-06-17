@@ -1,0 +1,40 @@
+{
+  "name": "auth-service",
+  "version": "0.1.0",
+  "description": "Serviço de Autenticação das aplicações Ship7Software",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "author": "hermogenes <ferreira.hermogenes@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ship7software/auth-service"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.3",
+    "crypto": "0.0.3",
+    "express": "^4.14.0",
+    "helmet": "^3.1.0",
+    "mongoose": "^4.7.0",
+    "mongoose-autopopulate": "^0.5.0",
+    "morgan": "^1.7.0",
+    "node-yaml-config": "0.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^3.11.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.7.1",
+    "nodemon": "^1.11.0"
+  }
+}
