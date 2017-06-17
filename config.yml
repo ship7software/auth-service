@@ -3,6 +3,7 @@ default:
     port: 4501
   mongo:
     url: mongodb://localhost/ship7-auth
+  privateKey: 233ijuioashjh@980123@@@
 development:
 
 stage:

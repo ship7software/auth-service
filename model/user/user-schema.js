@@ -30,8 +30,9 @@ userSchema.pre('save', function(next) {
   next();
 });
 
-userSchema.methods.passwordVerify = function(passToCheck) {
-  return crypto.decrypt(passToCheck) === this.password;
+userSchema.methods.verifyPassword = function(passToCheck) {
+  passToCheck = passToCheck || '';
+  return crypto.encrypt(passToCheck) === this.password;
 };
 
 userSchema.plugin(require('mongoose-autopopulate'));
