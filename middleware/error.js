@@ -1,11 +1,20 @@
-module.exports = (err, req, res, next) => {
-  if (err.errors) {
-    res.status(400).json(err.errors);
-  } else if (err.name && err.name === 'MongoError') {
-    res.status(400).json({ message: err.message });
-  } else {
-    res.status(500).json({ message: err.message });
+function getStatusCode(err) {
+  if (err.errors || err.name === 'MongoError') {
+    return 400;
   }
+  return 500;
+}
+
+function getContent(err) {
+  if (err.errors) {
+    return err.errors;
+  }
+  return { message: err.message };
+}
+
+module.exports = (err, req, res, next) => {
+  res.statusCode(getStatusCode(err)).send(getContent(err));
+
   if (process.env.NODE_ENV !== 'test') {
     console.log(err);
   }

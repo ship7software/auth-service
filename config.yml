@@ -9,5 +9,9 @@ development:
 stage:
 
 test:
-
+  mongo:
+    url: mongodb://ds127872.mlab.com:27872/ship7-auth-test?authSource=ship7-auth-test
+    options:
+      user: root
+      pass: '1234'
 production:
