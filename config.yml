@@ -1,0 +1,12 @@
+default:
+  server:
+    port: 4501
+  mongo:
+    url: mongodb://localhost/ship7-auth
+development:
+
+stage:
+
+test:
+
+production:

@@ -1,0 +1,10 @@
+[
+  {
+    "hostname": "hair.localhost",
+    "appShortName": "hair"
+  },
+  {
+    "hostname": "car.localhost",
+    "appShortName": "car"
+  }
+]
