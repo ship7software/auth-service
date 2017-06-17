@@ -22,6 +22,9 @@
     "no-continue": 0,
     "import/no-extraneous-dependencies": 0,
     "import/newline-after-import": 0,
-    "no-mixed-operators": 0
+    "no-mixed-operators": 0,
+    "no-else-return": "error",
+    "no-extra-parens": "error",
+    "complexity": ["error", 5]
   }
 }

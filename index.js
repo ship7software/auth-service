@@ -14,7 +14,7 @@ const authRoutes    = require('./middleware/auth');
 
 app.set('config', config);
 mongoose.Promise = bluebird;
-mongoose.connect(process.env.MONGO_DB_URI || config.mongo.url);
+mongoose.connect(process.env.MONGO_DB_URI || config.mongo.url, config.mongo.options);
 mongoose.set('debug', process.env.NODE_ENV !== 'test');
 
 app.use(cors());
