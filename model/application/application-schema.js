@@ -7,6 +7,7 @@ const applicationSchema = new Schema({
   logoUrl:  { type: String },
   whiteLogoUrl:  { type: String },
   blackLogoUrl:  { type: String },
+  frontendUrlBase: String,
   authPage: {
     htmlDescription:  { type: String },
     buttonBackgroundColor:  { type: String },

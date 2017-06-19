@@ -4,13 +4,14 @@ const Schema   = mongoose.Schema;
 const contextSchema = new Schema({
   hostname: { type: String, required: true },
   appShortName:  { type: String, required: true },
-  defaultRedirect: { type: String }
+  defaultRedirect: { type: String },
+  frontendUrlBase: String
 }, {
   toJSON: { virtuals: true },
   toObject: { virtuals: true }
 });
 
-contextSchema.index({ app: 1, hostname: 1 }, { unique: true });
+contextSchema.index({ appShortName: 1, hostname: 1 }, { unique: true });
 
 contextSchema.virtual('app', {
   ref: 'Application',

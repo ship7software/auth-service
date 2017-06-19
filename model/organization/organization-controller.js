@@ -21,15 +21,15 @@ OrganizationController.prototype.create = (req, res, next) => {
 
     userFacade.create(newUser).then((user) => {
       res.status(201).send(user);
-      mail.send('Ship7 Software<postmaster@sistemahair.com.br>', org.email, `${req.application.name} - Confirmação de Email`, 'accountConfirmation.html', {
-        applicationName: req.application.name,
-        applicationLogo: req.application.logoUrl,
+      mail.send(req.app.get('config').mail.from, org.email, `${req.context.appName} - Confirmação de Email`, 'accountConfirmation.html', {
+        applicationName: req.context.appName,
+        applicationLogo: req.context.logoUrl,
         sponsorName: org.sponsorName,
         confirmationLink: '',
         facebookLink: '',
         twitterLink: '',
         youtubeLink: ''
-      }, req.app.get('config').smtp);
+      }, req.app.get('config').mail.smtp);
     }).catch((err) => {
       organizationFacade.remove(org._id);
       next(err);

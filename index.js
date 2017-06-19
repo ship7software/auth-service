@@ -27,6 +27,10 @@ app.use(morgan('tiny', {
   skip: () => process.env.NODE_ENV === 'test'
 }));
 app.use(require('./middleware/application'));
+const contextMiddleware = require('./middleware/context');
+
+app.use(contextMiddleware.get);
+app.use(contextMiddleware.resolve);
 app.use(authRoutes.verify);
 app.post('/auth', authRoutes.login);
 app.use('/', routes);
