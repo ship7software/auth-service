@@ -34,7 +34,7 @@ module.exports = {
 
   resolve: (req, res, next) => {
     const application = req.application || {};
-    const context = application.context;
+    const context = application.context || {};
     const config = req.app.get('config');
     let frontBase = context.frontendUrlBase;
     frontBase = frontBase || application.frontendUrlBase || config.frontendUrlBase;

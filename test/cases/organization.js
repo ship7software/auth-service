@@ -52,7 +52,7 @@ module.exports.run = (server) => {
           chai.request(server).post('/organization').set('X-Application', 'hair')
             .send(valid)
             .end((err, res) => {
-              expect(res.status).eq(201)
+              expect(res.status).eq(200)
               expect(res.body.name).eq(valid.sponsorName)
               inserted = res.body
               done()

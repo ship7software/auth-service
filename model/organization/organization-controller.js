@@ -1,13 +1,11 @@
 const Controller = require('../../lib/controller');
 const organizationFacade  = require('./organization-facade');
-const userFacade = require('./../user/user-facade');
-const mail = require('./../../lib/mail');
-// const ObjectId = require('mongoose').Schema.Types.ObjectId;
+const userController = require('./../user/user-controller');
 class OrganizationController extends Controller {}
 
 OrganizationController.prototype.create = (req, res, next) => {
   organizationFacade.create(req.body).then((org) => {
-    const newUser = {
+    const user = {
       name: org.sponsorName,
       email: org.email,
       password: req.body.password,
@@ -19,21 +17,9 @@ OrganizationController.prototype.create = (req, res, next) => {
       }]
     };
 
-    userFacade.create(newUser).then((user) => {
-      res.status(201).send(user);
-      mail.send(req.app.get('config').mail.from, org.email, `${req.context.appName} - Confirmação de Email`, 'accountConfirmation.html', {
-        applicationName: req.context.appName,
-        applicationLogo: req.context.logoUrl,
-        sponsorName: org.sponsorName,
-        confirmationLink: '',
-        facebookLink: '',
-        twitterLink: '',
-        youtubeLink: ''
-      }, req.app.get('config').mail.smtp);
-    }).catch((err) => {
-      organizationFacade.remove(org._id);
-      next(err);
-    });
+    req.body = user;
+
+    userController.create(req, res, next);
   }).catch(err => next(err));
 };
 

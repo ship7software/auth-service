@@ -24,6 +24,7 @@ describe('Inicio', () => {
 });
 
 require('./cases/organization').run(server);
+require('./cases/user').run(server);
 require('./middleware/application').run(server, auth.principal);
 require('./middleware/auth').run(server, auth.principal);
 
