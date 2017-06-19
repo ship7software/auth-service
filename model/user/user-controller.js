@@ -15,7 +15,7 @@ function sendConfirmation(user, context, config) {
     applicationLogo: context.logoUrl,
     sponsorName: user.name,
     confirmationLink: new URL(`/confirmation?token=${token}`, context.frontendUrlBase).href
-  }, config.mail.smtp);
+  }, config);
 
   return token;
 }
@@ -30,7 +30,7 @@ function sendPasswordReset(user, context, config) {
     applicationLogo: context.logoUrl,
     sponsorName: user.name,
     resetLink: new URL(`/passwordReset?token=${token}`, context.frontendUrlBase).href
-  }, config.mail.smtp);
+  }, config);
 
   return token;
 }

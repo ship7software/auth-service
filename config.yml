@@ -8,7 +8,9 @@ default:
   appName: Ship7 Software
   logoUrl: http://img.clipartall.com/pirate-ship-wheel-clipart-big-image-png-ships-wheel-clip-art-2400_2399.png
   mail:
-    from: Ship7 Software<postmaster@sistemahair.com.br>
+    from: postmaster@sistemahair.com.br
+    elastic:
+      apiKey: 7e3644da-726f-4a35-8800-f53c716f5820
     smtp:
       host: smtp.mailgun.org
       port: 465
