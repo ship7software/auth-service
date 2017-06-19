@@ -45,8 +45,8 @@ function load(idx, cb) {
     cb();
   } else {
     const nextIdx = idx + 1;
-    db[models[idx]].model.bulkRemove().then(() => {
-      db[models[idx]].model.bulkInsert(db[models[idx]].content).then(() => load(nextIdx, cb));
+    db[models[idx]].model.Schema.remove({}).exec().then(() => {
+      db[models[idx]].model.Schema.insertMany(db[models[idx]].content).then(() => load(nextIdx, cb));
     });
   }
 }

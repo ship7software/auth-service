@@ -36,8 +36,20 @@ module.exports = (server, configuration, auth) => {
           done();
         });
       });
+      it('Deve retornar 404 quando buscar por id valido porem inexistente', (done) => {
+        chai.request(server).get(configuration.route + '/' + '5945ecb00000000000000000').set('X-Application', 'hair').set('Authorization', token).end((err, res) => {
+          expect(res.status).eq(404);
+          done();
+        });
+      });
       it('Deve retornar com sucesso o primeiro item pelo id', (done) => {
         chai.request(server).get(configuration.route + '/' + first._id).set('X-Application', 'hair').set('Authorization', token).end((err, res) => {
+          expect(res.status).eq(200);
+          done();
+        });
+      });
+      it('Deve retornar com sucesso um item', (done) => {
+        chai.request(server).get(configuration.route + '/one?' + configuration.one).set('X-Application', 'hair').set('Authorization', token).end((err, res) => {
           expect(res.status).eq(200);
           done();
         });
@@ -74,6 +86,12 @@ module.exports = (server, configuration, auth) => {
       });
     });
     describe('Atualizando [/PUT]', () => { 
+      it('Deve retornar 404 quando tentar atualizar por id valido porem inexistente', (done) => {
+        chai.request(server).put(configuration.route + '/5945ecb00000000000000000').set('X-Application', 'hair').set('Authorization', token).end((err, res) => {
+          expect(res.status).eq(404);
+          done();
+        });
+      });
       it('Deve ser atualizado com sucesso', (done) => {
         chai.request(server).put(configuration.route + '/' + inserted._id)
           .set('X-Application', 'hair')
@@ -85,7 +103,13 @@ module.exports = (server, configuration, auth) => {
         });
       });
     });
-    describe('Excluindo contas [/DELETE]', () => {      
+    describe('Excluindo contas [/DELETE]', () => {
+      it('Deve retornar 404 quando tentar excluir por id valido porem inexistente', (done) => {
+        chai.request(server).delete(configuration.route + '/5945ecb00000000000000000').set('X-Application', 'hair').set('Authorization', token).end((err, res) => {
+          expect(res.status).eq(404);
+          done();
+        });
+      });
       it('Deve ser removido com sucesso', (done) => {
         chai.request(server).delete(configuration.route + '/' + inserted._id)
           .set('X-Application', 'hair')
