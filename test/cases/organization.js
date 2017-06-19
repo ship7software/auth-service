@@ -24,7 +24,10 @@ module.exports.run = (server) => {
   };
 
   let invalid = {
-    "password": "123456@"
+    "name": "Test's Barber",
+    "email": "sistemahair-teste@mailinator.com",
+    "phone": "(99) 99999-9999",
+    "sponsorName": "Test Sponsor"
   };
 
   let update = {
