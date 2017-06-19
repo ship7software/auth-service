@@ -4,19 +4,20 @@ const userFacade = require('./../user/user-facade');
 // const ObjectId = require('mongoose').Schema.Types.ObjectId;
 class OrganizationController extends Controller {}
 
-OrganizationController.prototype.register = (req, res, next) => {
+OrganizationController.prototype.create = (req, res, next) => {
   organizationFacade.create(req.body).then((org) => {
     const newUser = {
       name: org.sponsorName,
       email: org.email,
       password: req.body.password,
       organization: org._id,
+      isSponsor: true,
       permissions: [{
-        app: req.application._id,
+        appShortName: req.application.shortName,
         allowed: [{ path: '*', write: true }]
       }]
     };
-    console.log(newUser);
+
     userFacade.create(newUser).then((user) => {
       res.status(201).send(user);
     }).catch((err) => {

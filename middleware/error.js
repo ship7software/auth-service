@@ -13,7 +13,7 @@ function getContent(err) {
 }
 
 module.exports = (err, req, res, next) => {
-  res.statusCode(getStatusCode(err)).send(getContent(err));
+  res.status(getStatusCode(err)).send(getContent(err));
 
   if (process.env.NODE_ENV !== 'test') {
     console.log(err);

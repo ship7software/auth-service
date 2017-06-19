@@ -4,21 +4,30 @@ const path          = require('path');
 const mongoose      = require('mongoose');
 const fs            = require('fs');
 let requiredFiles = fs.readdirSync(path.resolve(__dirname, '../resources/mongodb/required'));
+for (let idx = 0; idx < requiredFiles.length; idx++) {
+  requiredFiles[idx] = 'required/' + requiredFiles[idx]
+}
+
 const envResourcePath = path.resolve(__dirname, '../resources/mongodb/', process.env.NODE_ENV);
 
 if(fs.existsSync(envResourcePath)) {
   const envFiles    = fs.readdirSync(envResourcePath);
+  for (let idx = 0; idx < envFiles.length; idx++) {
+    envFiles[idx] = process.env.NODE_ENV + '/' + envFiles[idx]
+  }
   requiredFiles = requiredFiles.concat(envFiles);
 }
 
-console.log('Environment: ' + process.env.NODE_ENV);
-//mongoose.set('debug', true)
 let db = {};
 let models = [];
 for (let i = 0; i < requiredFiles.length; i += 1) {
   const file = requiredFiles[i];
-  const modelName = file.replace('.json', '');
-  const fileContent = JSON.parse(fs.readFileSync(path.resolve(__dirname, `../resources/mongodb/required/${file}`)));
+  let modelName = file.replace('.json', '');
+  if (modelName.indexOf('/') > -1) {
+    modelName = modelName.split('/')[1];
+  }
+
+  const fileContent = JSON.parse(fs.readFileSync(path.resolve(__dirname, `../resources/mongodb/${file}`)));
   if (db[modelName]) {
     db[modelName].content = db[modelName].content.concat(fileContent);
   } else {

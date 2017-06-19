@@ -1,0 +1,25 @@
+{
+  "name": "Application",
+  "route": "/application",
+  "totalItems": 2,
+  "sort": {
+    "shortName": "car"
+  },
+  "create": {
+    "valid": {
+      "name": "Sistema Test",
+      "shortName": "test"
+    },
+    "unique": {
+      "name": "Sistema Test",
+      "shortName": "car"
+    },
+    "invalid": {
+      "name": "Sistema Test"
+    }
+  },
+  "update": {
+    "name": "Sistema Test",
+    "shortName": "tests"
+  }
+}
