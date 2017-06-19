@@ -2,6 +2,8 @@ const whiteList = [
   { method: '*', path: '/application' },
   { method: '*', path: '/context' },
   { method: 'POST', path: '/organization' },
+  { method: 'POST', path: '/user/confirmation' },
+  { method: 'POST', path: '/user/passwordReset' },
   { method: 'POST', path: '/auth' }
 ];
 

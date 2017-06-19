@@ -8,6 +8,7 @@ const userSchema = new Schema({
   password:  { type: String, required: true },
   photoUrl:  { type: String, required: true, default: 'https://image.ibb.co/gFugYQ/nophoto.png' },
   organization:  { type: Schema.Types.ObjectId, ref: 'Organization', autopopulate: true, required: true },
+  confirmed: Boolean,
   isSponsor: Boolean,
   permissions: [{
     appShortName: { type: String, required: true },
@@ -32,9 +33,9 @@ userSchema.virtual('permissions.app', {
 
 userSchema.pre('save', function(next) {
   const user = this;
-  if (!user.isModified('password')) return next();
-
-  user.password = crypto.encrypt(user.password);
+  if (user.isModified('password')) {
+    user.password = crypto.encrypt(user.password);
+  }
   next();
 });
 
