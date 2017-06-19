@@ -11,8 +11,7 @@ function sanitizeReq(req) {
 }
 module.exports = (req, res, next) => {
   if (req.url !== '/' && req.url.indexOf('/context') === -1 && req.url.indexOf('/application') === -1) {
-    const appShortName = req.headers['x-application'] || req.query.x_application || 
-    req.body.x_application;
+    const appShortName = req.headers['x-application'] || req.query.x_application || req.body.x_application;
 
     sanitizeReq(req);
 
