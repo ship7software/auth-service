@@ -15,6 +15,7 @@ const authRoutes    = require('./middleware/auth');
 app.set('config', config);
 mongoose.Promise = bluebird;
 mongoose.connect(process.env.MONGO_DB_URI || config.mongo.url, config.mongo.options);
+
 mongoose.set('debug', process.env.NODE_ENV !== 'test');
 
 app.use(cors());
@@ -22,7 +23,9 @@ app.options('*', cors());
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(morgan('tiny'));
+app.use(morgan('tiny', {
+  skip: () => process.env.NODE_ENV === 'test'
+}));
 app.use(require('./middleware/application'));
 app.use(authRoutes.verify);
 app.post('/auth', authRoutes.login);
@@ -31,7 +34,9 @@ app.get('/me', authRoutes.perfil);
 app.use(require('./middleware/error'));
 
 app.listen(config.server.port, () => {
-  console.log(`Magic happens on port ${config.server.port}`);
+  if (process.env.NODE_ENV !== 'test') {
+    console.log(`Magic happens on port ${config.server.port}`);
+  }
 });
 
 module.exports = app;

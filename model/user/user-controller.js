@@ -5,7 +5,6 @@ class UserController extends Controller {}
 
 UserController.prototype.auth = (req, res, next) => {
   userFacade.findOne({ email: req.body.email }).then((user) => {
-    console.log(user);
     if (!user || !user.verifyPassword(req.body.password)) {
       res.status(401).send({ code: 'INVALID_CREDENTIALS' });
     } else {

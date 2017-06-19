@@ -1,7 +1,6 @@
 const whiteList = [
   { method: '*', path: '/application' },
   { method: '*', path: '/context' },
-  { method: '*', path: '/' },
   { method: 'POST', path: '/organization' },
   { method: 'POST', path: '/auth' }
 ];
@@ -11,9 +10,8 @@ const jwt = require('jsonwebtoken');
 const userController = require('./../model/user/user-controller');
 
 function isInWhiteList(req) {
-  const urlAccess = req.query.path || req.body.path || req.url;
-  return _(whiteList).some(obj =>
-    (obj.method === '*' || obj.method === req.method) && (obj.path === '*' || obj.path === urlAccess)
+  return req.originalUrl === '/' || _(whiteList).some(obj =>
+    (obj.method === '*' || obj.method === req.method) && (obj.path === '*' || req.originalUrl.indexOf(obj.path) !== -1)
   );
 }
 

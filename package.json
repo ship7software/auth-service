@@ -8,7 +8,8 @@
     "start": "node index.js",
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "test": "NODE_ENV=test node resources/populate && node_modules/.bin/_mocha test/run.js --timeout=100000",
-    "coverage": "NODE_ENV=test node resources/populate && node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --timeout=100000 test/run.js"
+    "coverage": "NODE_ENV=test node resources/populate && node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --timeout=100000 test/run.js",
+    "codacy": " NODE_ENV=test node resources/populate && node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --timeout=100000 test/run.js -R spec && cat ./coverage/lcov.info | CODACY_PROJECT_TOKEN=6038dc21f59c46b3b5d945fd4ad78dc3  ./node_modules/.bin/codacy-coverage && rm -rf ./coverage"
   },
   "engines": {
     "node": ">=6"
@@ -23,6 +24,7 @@
   "dependencies": {
     "bluebird": "^3.4.6",
     "body-parser": "^1.15.2",
+    "codacy-coverage": "^2.0.2",
     "cors": "^2.8.3",
     "crypto": "0.0.3",
     "express": "^4.14.0",
@@ -31,7 +33,7 @@
     "jsonwebtoken": "^7.4.1",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
-    "mongoose": "^4.10.6",
+    "mongoose": "^4.10.2",
     "mongoose-autopopulate": "^0.5.0",
     "morgan": "^1.7.0",
     "node-yaml-config": "0.0.4"

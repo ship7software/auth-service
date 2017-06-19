@@ -8,8 +8,9 @@ const userSchema = new Schema({
   password:  { type: String, required: true },
   photoUrl:  { type: String, required: true, default: 'https://image.ibb.co/gFugYQ/nophoto.png' },
   organization:  { type: Schema.Types.ObjectId, ref: 'Organization', autopopulate: true, required: true },
+  isSponsor: Boolean,
   permissions: [{
-    app: { type: Schema.Types.ObjectId, ref: 'Application', autopopulate: true, required: true },
+    appShortName: { type: String, required: true },
     allowed: [{
       path: { type: String, required: true },
       write: Boolean
@@ -21,6 +22,13 @@ const userSchema = new Schema({
 });
 
 userSchema.index({ organization: 1, email: 1 }, { unique: true });
+userSchema.virtual('permissions.app', {
+  ref: 'Application',
+  localField: 'appShortName',
+  foreignField: 'shortName',
+  justOne: true,
+  autopopulate: true
+});
 
 userSchema.pre('save', function(next) {
   const user = this;
