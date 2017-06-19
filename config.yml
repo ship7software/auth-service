@@ -4,6 +4,13 @@ default:
   mongo:
     url: mongodb://localhost/ship7-auth
   privateKey: 233ijuioashjh@980123@@@
+  smtp:
+    host: smtp.mailgun.org
+    port: 465
+    secure: true
+    auth:
+      user: postmaster@sistemahair.com.br
+      pass: 3031cdf496d69c7b1dc0e670e3e718fe
 development:
 
 stage:

@@ -1,6 +1,7 @@
 const Controller = require('../../lib/controller');
 const organizationFacade  = require('./organization-facade');
 const userFacade = require('./../user/user-facade');
+const mail = require('./../../lib/mail');
 // const ObjectId = require('mongoose').Schema.Types.ObjectId;
 class OrganizationController extends Controller {}
 
@@ -20,6 +21,15 @@ OrganizationController.prototype.create = (req, res, next) => {
 
     userFacade.create(newUser).then((user) => {
       res.status(201).send(user);
+      mail.send('Ship7 Software<postmaster@sistemahair.com.br>', org.email, `${req.application.name} - Confirmação de Email`, 'accountConfirmation.html', {
+        applicationName: req.application.name,
+        applicationLogo: req.application.logoUrl,
+        sponsorName: org.sponsorName,
+        confirmationLink: '',
+        facebookLink: '',
+        twitterLink: '',
+        youtubeLink: ''
+      }, req.app.get('config').smtp);
     }).catch((err) => {
       organizationFacade.remove(org._id);
       next(err);
