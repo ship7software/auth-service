@@ -3,7 +3,7 @@ const userFacade  = require('./user-facade');
 const jwt = require('jsonwebtoken');
 const mail = require('./../../lib/mail');
 const organizationFacade = require('./../organization/organization-facade');
-const { URL } = require('url');
+const url = require('url');
 
 function sendConfirmation(user, context, config) {
   const token = jwt.sign({
@@ -14,7 +14,7 @@ function sendConfirmation(user, context, config) {
     applicationName: context.appName,
     applicationLogo: context.logoUrl,
     sponsorName: user.name,
-    confirmationLink: new URL(`/confirmation?token=${token}`, context.frontendUrlBase).href
+    confirmationLink: url.resolve(`/confirmation?token=${token}`, context.frontendUrlBase)
   }, config);
 
   return token;
@@ -29,7 +29,7 @@ function sendPasswordReset(user, context, config) {
     applicationName: context.appName,
     applicationLogo: context.logoUrl,
     sponsorName: user.name,
-    resetLink: new URL(`/passwordReset?token=${token}`, context.frontendUrlBase).href
+    resetLink: url.resolve(`/passwordReset?token=${token}`, context.frontendUrlBase)
   }, config);
 
   return token;
