@@ -2,9 +2,7 @@
   "name": "Application",
   "route": "/application",
   "totalItems": 2,
-  "sort": {
-    "shortName": "car"
-  },
+  "one": "shortName=hair",
   "create": {
     "valid": {
       "name": "Sistema Test",

@@ -20,7 +20,7 @@ UserController.prototype.auth = (req, res, next) => {
 
       res.status(200).send(perfil);
     }
-  }).catch(err => next(err));
+  });
 };
 
 module.exports = new UserController(userFacade);

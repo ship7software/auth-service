@@ -25,7 +25,7 @@ module.exports = (req, res, next) => {
           req.application = app;
           next();
         }
-      }).catch(err => next(err));
+      });
     }
   } else {
     next();

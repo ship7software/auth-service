@@ -17,5 +17,13 @@ module.exports.run = (server, auth) => {
         done();
       });
     });
+    it('Deve receber erro 401 ao autenticar com dados invalidos', (done) => {
+      chai.request(server).post('/auth?x_application=hair').send({
+        email: 'h'
+      }).end((err, res) => {
+        expect(res.status).eq(401);
+        done();
+      });
+    });
   });
 };
