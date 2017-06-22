@@ -45,5 +45,6 @@ userSchema.methods.verifyPassword = function(passToCheck) {
 };
 
 userSchema.plugin(require('mongoose-autopopulate'));
+userSchema.plugin(require('mongoose-unique-validator'));
 
 module.exports = mongoose.model('User', userSchema);

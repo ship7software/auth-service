@@ -9,4 +9,6 @@ const organizationSchema = new Schema({
   photoUrl: { type: String, required: true, default: 'https://maxcdn.icons8.com/Share/icon/Business//organization1600.png' }
 });
 
+organizationSchema.plugin(require('mongoose-unique-validator'));
+
 module.exports = mongoose.model('Organization', organizationSchema);
