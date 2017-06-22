@@ -12,6 +12,10 @@ const app           = express();
 const config        = yamlConfig.load(path.join(__dirname, '/config.yml'));
 const Ship7Middle   = require('ship7-api-lib').Middleware;
 const appFacade     = require('./model/application/application-facade');
+const appBusiness   = require('./model/application/application-business');
+const orgBusiness   = require('./model/organization/organization-business');
+const usrBusiness   = require('./model/user/user-business');
+const ctxBusiness   = require('./model/context/context-business');
 
 app.set('config', config);
 mongoose.Promise = bluebird;
@@ -55,7 +59,12 @@ app.use(Ship7Middle.VerifyAuth({
 
 app.use('/', routes);
 app.get('/me', Ship7Middle.Perfil);
-app.use(require('./middleware/error'));
+app.use(Ship7Middle.Error({
+  application: appBusiness,
+  context: ctxBusiness,
+  organization: orgBusiness,
+  user: usrBusiness
+}));
 
 app.listen(process.env.PORT || config.server.port, () => {
   if (process.env.NODE_ENV !== 'test') {
