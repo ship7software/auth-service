@@ -1,1 +1,1 @@
-module.exports = require('./../../lib/router').rest(require('./context-controller'));
+module.exports = require('ship7-api-lib').Router.rest(require('./context-controller'));

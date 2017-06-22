@@ -1,4 +1,4 @@
-const Controller = require('../../lib/controller');
+const Controller = require('ship7-api-lib').Controller;
 const contextFacade  = require('./context-facade');
 
 class ContextController extends Controller {}

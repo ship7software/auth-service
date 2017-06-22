@@ -1,4 +1,4 @@
-module.exports = require('./../../lib/router').rest(require('./user-controller'), (controller, router) => {
+module.exports = require('ship7-api-lib').Router.rest(require('./user-controller'), (controller, router) => {
   router.route('/confirmation/send')
     .post((...args) => controller.sendConfirmation(...args));
 

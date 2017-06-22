@@ -1,7 +1,7 @@
-const Controller = require('../../lib/controller');
+const Controller = require('ship7-api-lib').Controller;
 const userFacade  = require('./user-facade');
 const jwt = require('jsonwebtoken');
-const mail = require('./../../lib/mail');
+const Mail = require('ship7-api-lib').Mail;
 const organizationFacade = require('./../organization/organization-facade');
 const url = require('url');
 
@@ -10,12 +10,14 @@ function sendConfirmation(user, context, config) {
     email: user.email
   }, config.privateKey, { expiresIn: '2d' });
 
-  mail.send(config.mail.from, user.email, `${context.appName} - Confirmação de Email`, 'accountConfirmation.html', {
+  const mail = new Mail('ship7-auth-confirmation', user.email, {
     applicationName: context.appName,
     applicationLogo: context.logoUrl,
     sponsorName: user.name,
     confirmationLink: url.resolve(context.frontendUrlBase, `/confirmation?token=${token}`)
-  }, config);
+  });
+
+  mail.send();
 
   return token;
 }
@@ -25,12 +27,14 @@ function sendPasswordReset(user, context, config) {
     email: user.email
   }, config.privateKey, { expiresIn: '2d' });
 
-  mail.send(config.mail.from, user.email, `${context.appName} - Redefinição de Senha`, 'passwordReset.html', {
+  const mail = new Mail('ship7-auth-passwordReset', user.email, {
     applicationName: context.appName,
     applicationLogo: context.logoUrl,
     sponsorName: user.name,
     resetLink: url.resolve(context.frontendUrlBase, `/passwordReset?token=${token}`)
-  }, config);
+  });
+
+  mail.send();
 
   return token;
 }

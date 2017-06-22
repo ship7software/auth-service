@@ -1,4 +1,4 @@
-const Model = require('../../lib/facade');
+const Model = require('ship7-api-lib').Facade;
 const userSchema  = require('./user-schema');
 
 class UserModel extends Model {}

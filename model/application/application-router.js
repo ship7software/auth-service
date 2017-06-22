@@ -1,1 +1,1 @@
-module.exports = require('./../../lib/router').rest(require('./application-controller'));
+module.exports = require('ship7-api-lib').Router.rest(require('./application-controller'));

@@ -1,4 +1,4 @@
-const Controller = require('../../lib/controller');
+const Controller = require('ship7-api-lib').Controller;
 const organizationFacade  = require('./organization-facade');
 const userController = require('./../user/user-controller');
 class OrganizationController extends Controller {}
