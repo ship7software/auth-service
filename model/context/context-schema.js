@@ -22,5 +22,6 @@ contextSchema.virtual('app', {
 });
 
 contextSchema.plugin(require('mongoose-autopopulate'));
+contextSchema.plugin(require('mongoose-unique-validator'));
 
 module.exports = mongoose.model('Context', contextSchema);
