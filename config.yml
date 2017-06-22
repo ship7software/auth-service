@@ -19,10 +19,11 @@ default:
         user: postmaster@sistemahair.com.br
         pass: 3031cdf496d69c7b1dc0e670e3e718fe
 development:
-
+  mongo:
+    url: mongodb://root:1234@ds129402.mlab.com:29402/ship7-auth-dev
 stage:
 
 test:
   mongo:
-    url: mongodb://root:1234@ds127872.mlab.com:27872/ship7-auth-test?authSource=ship7-auth-test
+    url: mongodb://root:1234@ds127872.mlab.com:27872/ship7-auth-test
 production:

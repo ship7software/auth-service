@@ -1,0 +1,4 @@
+applications:
+- name: ship7-auth-service
+  command: npm start
+  memory: 128m

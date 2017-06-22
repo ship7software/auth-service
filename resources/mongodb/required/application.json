@@ -4,31 +4,13 @@
     "shortName": "hair",
     "logoUrl": "https://preview.ibb.co/gVQunk/hair_black.png",
     "whiteLogoUrl": "https://preview.ibb.co/gBDatQ/hair_white.png",
-    "blackLogoUrl": "https://preview.ibb.co/gVQunk/hair_black.png",
-    "authPage": {
-      "htmlDescription": "<p>Um sistema completo para você gerenciar seu estabelecimento e/ou sua atividade autônoma. Sistema ideal para salões, barbearias, spas, massagens. Você irá controlar:</p><br /><ul><li>Agenda</li><li>Comandas</li><li>Faturamento</li><li>Formas de Pagamento</li><li>E muito mais.</li></ul>",
-      "buttonBackgroundColor": "#00AAFF",
-      "buttonBorderColor": "#00a0f0",
-      "buttonBackgroundColorHover": "#00a0f0",
-      "buttonBorderColorHover": "#00a0f0",
-      "overlayColor": "rgba(99, 156, 185, 0.6)",
-      "overlayImage": "https://www.gaurirealleza.com.br/wp-content/uploads/2016/04/SPA.jpg"
-    }
+    "blackLogoUrl": "https://preview.ibb.co/gVQunk/hair_black.png"
   },
   {
     "name": "Sistema CAR",
     "shortName": "car",
     "logoUrl": "https://preview.ibb.co/hX9WYQ/car_black.png",
     "whiteLogoUrl": "https://preview.ibb.co/ncXktQ/car_white.png",
-    "blackLogoUrl": "https://preview.ibb.co/hX9WYQ/car_black.png",
-    "authPage": {
-      "htmlDescription": "<p>Um sistema completo para você gerenciar seu estabelecimento e/ou sua atividade autônoma. Sistema ideal para oficinas mecânicas, auto elétricas, funilaria, etc. Você irá controlar:</p><br /><ul><li>Agenda</li><li>Ordens de Serviço</li><li>Faturamento</li><li>Formas de Pagamento</li><li>E muito mais.</li></ul>",
-      "buttonBackgroundColor": "#ff0000",
-      "buttonBorderColor": "#f00000",
-      "buttonBackgroundColorHover": "#f00000",
-      "buttonBorderColorHover": "#f00000",
-      "overlayColor": "rgba(185, 99, 99, 0.6)",
-      "overlayImage": "http://campbellfield.satgurumotors.com.au/wp-content/uploads/2015/09/mechanic-.jpg"
-    }
+    "blackLogoUrl": "https://preview.ibb.co/hX9WYQ/car_black.png"
   }
 ]

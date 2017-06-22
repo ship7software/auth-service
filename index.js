@@ -37,9 +37,9 @@ app.use('/', routes);
 app.get('/me', authRoutes.perfil);
 app.use(require('./middleware/error'));
 
-app.listen(config.server.port, () => {
+app.listen(process.env.PORT || config.server.port, () => {
   if (process.env.NODE_ENV !== 'test') {
-    console.log(`Magic happens on port ${config.server.port}`);
+    console.log(`Magic happens on port ${(process.env.PORT || config.server.port)}`);
   }
 });
 
