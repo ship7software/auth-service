@@ -14,7 +14,7 @@ function sendConfirmation(user, context, config) {
     applicationName: context.appName,
     applicationLogo: context.logoUrl,
     sponsorName: user.name,
-    confirmationLink: url.resolve(`/confirmation?token=${token}`, context.frontendUrlBase)
+    confirmationLink: url.resolve(context.frontendUrlBase, `/confirmation?token=${token}`)
   }, config);
 
   return token;
@@ -29,7 +29,7 @@ function sendPasswordReset(user, context, config) {
     applicationName: context.appName,
     applicationLogo: context.logoUrl,
     sponsorName: user.name,
-    resetLink: url.resolve(`/passwordReset?token=${token}`, context.frontendUrlBase)
+    resetLink: url.resolve(context.frontendUrlBase, `/passwordReset?token=${token}`)
   }, config);
 
   return token;
@@ -46,6 +46,7 @@ function auth(user, req, res) {
   };
 
   perfil.token = jwt.sign(perfil, req.app.get('config').privateKey, { expiresIn: '8h' });
+  perfil.redirectUrl = url.resolve(req.context.frontendUrlBase, `?token=${perfil.token}`);
 
   res.status(200).json(perfil);
 }
@@ -108,7 +109,7 @@ UserController.prototype.passwordReset = (req, res, next) => {
     }
 
     if (!req.body.password || req.body.password !== req.body.passwordConfirm) {
-      res.status(400).json({ message: 'INVALID_DATA' });
+      res.status(400).json({ message: 'Preencha os campos de senha corretamente!' });
       return;
     }
 

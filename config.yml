@@ -4,7 +4,7 @@ default:
   mongo:
     url: mongodb://localhost/ship7-auth
   privateKey: 233ijuioashjh@980123@@@
-  frontendUrlBase: http://localhost:8001
+  frontendUrlBase: http://localhost:8501
   appName: Ship7 Software
   logoUrl: http://img.clipartall.com/pirate-ship-wheel-clipart-big-image-png-ships-wheel-clip-art-2400_2399.png
   mail:
