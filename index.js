@@ -10,7 +10,8 @@ const yamlConfig    = require('node-yaml-config');
 const path          = require('path');
 const app           = express();
 const config        = yamlConfig.load(path.join(__dirname, '/config.yml'));
-const authRoutes    = require('./middleware/auth');
+const Ship7Middle   = require('ship7-api-lib').Middleware;
+const appFacade     = require('./model/application/application-facade');
 
 app.set('config', config);
 mongoose.Promise = bluebird;
@@ -31,10 +32,29 @@ const contextMiddleware = require('./middleware/context');
 
 app.use(contextMiddleware.get);
 app.use(contextMiddleware.resolve);
-app.use(authRoutes.verify);
-app.post('/auth', authRoutes.login);
+app.use(Ship7Middle.VerifyAuth({
+  whiteList: [
+    { method: '*', path: '/context' },
+    { method: 'POST', path: '/organization' },
+    { method: 'POST', path: '/user/confirmation' },
+    { method: 'POST', path: '/user/passwordReset' },
+    { method: 'POST', path: '/auth' }
+  ],
+  basicValidator: (req, res, next) => {
+    appFacade.findOne({
+      shortName: req.user.login,
+      apiKey: req.user.password
+    }).then((response) => {
+      if (response) {
+        return next();
+      }
+      res.status(401).json({ message: 'INVALID_OR_EXPIRED_TOKEN' });
+    });
+  }
+}));
+
 app.use('/', routes);
-app.get('/me', authRoutes.perfil);
+app.get('/me', Ship7Middle.Perfil);
 app.use(require('./middleware/error'));
 
 app.listen(process.env.PORT || config.server.port, () => {

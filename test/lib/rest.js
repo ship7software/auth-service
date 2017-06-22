@@ -5,22 +5,14 @@ chai.use(chaiHttp)
 
 module.exports = (server, configuration, auth) => {
   describe(configuration.name, () => {
-    let token = null;
+    let token = 'Basic c3VwZXJ1c2VyOnN1cCZydTUzcjUmY3IzdA=';
     let inserted = null;
     let valid = configuration.create.valid;
     let unique = configuration.create.unique;
     let invalid = configuration.create.invalid;           
     let update = configuration.update;
     let first = null;
-
-    before('Dado que eu estou logado com um usuário válido', (done) => {
-      chai.request(server).post('/auth').set('X-Application', 'hair').send(auth).end((err, res) => {
-        expect(res.status).eq(200);
-        expect(res.body).to.have.property('token');
-        token = 'Bearer ' + res.body.token;
-        done();
-      })
-    })
+    
     describe('Listando [/GET]', () => {
       it('Deve receber com sucesso uma lista de itens', (done) => {
         chai.request(server).get(configuration.route).set('X-Application', 'hair').set('Authorization', token).end((err, res) => {

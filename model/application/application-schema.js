@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const md5 = require('md5');
 const Schema   = mongoose.Schema;
 
 const applicationSchema = new Schema({
@@ -8,16 +9,17 @@ const applicationSchema = new Schema({
   whiteLogoUrl:  { type: String },
   blackLogoUrl:  { type: String },
   frontendUrlBase: String,
+  apiKey: {
+    type: String,
+    required: true,
+    hide: true,
+    default: () => md5(`@piK&y=${new Date().toISOString()}`)
+  },
   authPage: {
-    htmlDescription:  { type: String },
-    buttonBackgroundColor:  { type: String },
-    buttonBorderColor:  { type: String },
-    buttonBackgroundColorHover:  { type: String },
-    buttonBorderColorHover:  { type: String },
-    overlayColor:  { type: String },
-    overlayImage:  { type: String }
+    htmlDescription:  { type: String }
   }
 });
 applicationSchema.plugin(require('mongoose-unique-validator'));
+applicationSchema.plugin(require('mongoose-hidden'));
 
 module.exports = mongoose.model('Application', applicationSchema);
