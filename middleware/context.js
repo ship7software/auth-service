@@ -8,13 +8,7 @@ function getContext(application, context, config, frontBase) {
     blackLogoUrl: application.blackLogoUrl || config.logoUrl,
     frontendUrlBase: frontBase,
     authPage: {
-      htmlDescription: application.htmlDescription,
-      buttonBackgroundColor: application.buttonBackgroundColor,
-      buttonBorderColor: application.buttonBorderColor,
-      buttonBackgroundColorHover: application.buttonBackgroundColorHover,
-      buttonBorderColorHover: application.buttonBorderColorHover,
-      overlayColor: application.overlayColor,
-      overlayImage: application.overlayImage
+      htmlDescription: application.htmlDescription
     }
   };
 }
