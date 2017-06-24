@@ -16,7 +16,8 @@ module.exports = {
 
   get: (req, res, next) => {
     if (req.application) {
-      const contextFilter = { appShortName: req.application.shortName, hostname: req.hostname };
+      const contextFilter = { appShortName: req.application.shortName, hostname: req.get('x-context') || req.get('origin') };
+      console.log(req.get('origin'));
       contextFacade.findOne(contextFilter).then((context) => {
         req.application.context = context;
         next();
@@ -33,6 +34,7 @@ module.exports = {
     let frontBase = context.frontendUrlBase;
     frontBase = frontBase || application.frontendUrlBase || config.frontendUrlBase;
     req.context = getContext(application, context, config, frontBase);
+    console.log(req.context);
 
     next();
   }

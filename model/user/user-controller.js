@@ -46,7 +46,8 @@ function auth(user, req, res) {
     email: user.email,
     organization: user.organization,
     permissions: user.permissions,
-    confirmationToken: user.confirmationToken
+    confirmationToken: user.confirmationToken,
+    photoUrl: user.photoUrl
   };
 
   perfil.token = jwt.sign(perfil, req.app.get('config').privateKey, { expiresIn: '8h' });
